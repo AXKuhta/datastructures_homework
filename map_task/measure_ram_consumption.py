@@ -56,7 +56,7 @@ for i in range(0, 10**5, 10**4//4):
 	if i == 0:
 		i = 1
 
-	rss, vms, time = run_test(f"python dict_ram.py {i}")
+	rss, vms, time = run_test(["python", "dict_ram.py", str(i)])
 
 	py_series_rss.append(rss)
 	py_series_vms.append(vms)
