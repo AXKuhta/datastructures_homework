@@ -132,11 +132,13 @@ fig_cpp.layout.yaxis.tickformat = ram_usage_format_function_js
 fig_cpp.layout.yaxis2.tickformat = time_format_function_js
 fig_cpp.layout.yaxis2.tickmode = "sync"
 fig_cpp.layout.yaxis2.zeroline = False
+fig_cpp.layout.title = "C++ std::map"
 
 fig_python.layout.yaxis.tickformat = ram_usage_format_function_js
 fig_python.layout.yaxis2.tickformat = time_format_function_js
 fig_python.layout.yaxis2.tickmode = "sync"
 fig_python.layout.yaxis2.zeroline = False
+fig_python.layout.title = "Python dict"
 
 with open("memory+time.html", "w") as f:
 		f.write("<!DOCTYPE html>")
