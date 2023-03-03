@@ -41,7 +41,7 @@ for i in range(0, 10**8, 10**7*2):
 	if i == 0:
 		i = 1
 
-	rss, vms, time = run_test(f"map_ram.exe {i}")
+	rss, vms, time = run_test(["./map_ram.exe", str(i)])
 
 	cpp_series_rss.append(rss)
 	cpp_series_vms.append(vms)
