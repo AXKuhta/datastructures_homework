@@ -109,27 +109,34 @@ fig_python.add_trace(
 ram_usage_format_function_js = """
 const units = ["B", "KB", "MB", "GB"]
 const fixed = [0, 0, 1, 2]
-var mag = +(x > 1024**1) + (x > 1024**2) + (x > 1024**3) + (x > 1024**4)
+const abs = x < 0 ? -x : x
+
+var mag = 0 + (abs > 1024**1) + (abs > 1024**2) + (abs > 1024**3)
 
 return Number(x / 1024**mag).toFixed(fixed[mag]) + units[mag]
 """
 
 # И для времени
 time_format_function_js = """
-const units = ["s", "ms"]
-const fixed = [1, 0]
-var mag = +(x < 1)
+const units = ["s", "ms", "us", "ns", "s"]
+const fixed = [1, 0, 0, 0, 0]
+const abs = x < 0 ? -x : x
+
+var mag = 0 + (abs < 1000**0) + (abs < 1000**-1) + (abs < 1000**-2) + (abs < 1000**-3)
 
 return Number(x * 1000**mag).toFixed(fixed[mag]) + units[mag]
 """
 
+# https://plotly.com/python/reference/layout/yaxis/
 fig_cpp.layout.yaxis.tickformat = ram_usage_format_function_js
 fig_cpp.layout.yaxis2.tickformat = time_format_function_js
 fig_cpp.layout.yaxis2.tickmode = "sync"
+fig_cpp.layout.yaxis2.zeroline = False
 
 fig_python.layout.yaxis.tickformat = ram_usage_format_function_js
 fig_python.layout.yaxis2.tickformat = time_format_function_js
 fig_python.layout.yaxis2.tickmode = "sync"
+fig_python.layout.yaxis2.zeroline = False
 
 with open("memory+time.html", "w") as f:
 		f.write("<!DOCTYPE html>")

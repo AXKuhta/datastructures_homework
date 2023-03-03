@@ -14,4 +14,4 @@ run: all
 	python3 measure_ram_consumption.py
 
 clean:
-	rm -f $(TARGET) memory.html
+	rm -f $(TARGET) memory+time.html
